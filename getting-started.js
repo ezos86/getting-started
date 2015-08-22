@@ -71,6 +71,7 @@ var routeMap = {
     function transitionRoute(path) {
         // grab the config object to get the form element and controller
         var formRoute = routeMap[path];
+        console.log(formRoute);
 
         // wrap the upcoming form in jQuery
         var upcomingLeft = $('#' + formRoute.panelLeft);
