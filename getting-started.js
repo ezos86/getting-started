@@ -70,8 +70,9 @@ var routeMap = {
     // Handle transitions between routes
     function transitionRoute(path) {
 
-        if(path == '#/clients'){
-          console.log('cleitns');
+        if(path != '#/clients'){
+          $('.feedback-overlay').hide();
+          $('#feedback').modal('hide');
         }
 
         // grab the config object to get the form element and controller
@@ -81,7 +82,7 @@ var routeMap = {
         var upcomingLeft = $('#' + formRoute.panelLeft);
         var upcomingRight = $('#' + formRoute.panelRight);
 
-        console.log(activeForm);
+        //console.log(activeForm);
         // if there is no active form then make the current one active
         if (!activeForm) {
             activeForm = upcomingLeft;
