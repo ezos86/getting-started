@@ -11,6 +11,9 @@ function overlayClose() {
 }
 overlayClose();
 
+//Global Declarations
+var client_url;
+
 var routeMap = {
         '#/': {
             panelLeft: 'left-panel-start',
@@ -284,7 +287,7 @@ $('.btn-server').click(function(){
     $('.btn-client').addClass('grey');
     $(this).removeClass('grey').addClass('active-btn');
     $('.develop').fadeIn().addClass('blink');
-    var url = $(this).data("url");
+    client_url = $(this).data("url");
     // document.location = url;
 
     $('.develop').click(function(e){
@@ -324,8 +327,8 @@ $('.gs-submit').click(function(){
         error: function() {console.log('Error with Login Function');},
         complete: function(){
           $('#feedback').modal('hide');
-          $('.develop').attr("href", url);
-          document.location = url;
+          $('.develop').attr("href", client_url);
+          document.location = client_url;
         }
     });
 });
