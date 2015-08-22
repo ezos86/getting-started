@@ -332,3 +332,9 @@ $('.gs-submit').click(function(){
         }
     });
 });
+
+$('.gs-no-thanks').click(function(){
+  $('#feedback').modal('hide');
+  $('.develop').attr("href", client_url);
+  document.location = client_url;
+});
