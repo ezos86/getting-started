@@ -69,9 +69,13 @@ var routeMap = {
 
     // Handle transitions between routes
     function transitionRoute(path) {
+
+        if(path == '#/clients'){
+          console.log('cleitns');
+        }
+
         // grab the config object to get the form element and controller
         var formRoute = routeMap[path];
-        console.log(path);
 
         // wrap the upcoming form in jQuery
         var upcomingLeft = $('#' + formRoute.panelLeft);
