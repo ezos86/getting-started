@@ -292,12 +292,12 @@ $('.btn-server').click(function(){
       $('.develop').removeClass('blink');
       $('.feedback-overlay').show();
       $('#feedback').modal('show');
-      $('#feedback').on('hidden.bs.modal', function () {
-        $('.develop').attr("href", url);
-        // $('#feedback').hide();
-        // $('.feedback-overlay').hide();
-        document.location = url;
-      });
+      // $('#feedback').on('hidden.bs.modal', function () {
+      //   $('.develop').attr("href", url);
+      //   // $('#feedback').hide();
+      //   // $('.feedback-overlay').hide();
+      //   document.location = url;
+      // });
     });
   });
   
@@ -324,6 +324,8 @@ $('.gs-submit').click(function(){
         error: function() {console.log('Error with Login Function');},
         complete: function(){
           $('#feedback').modal('hide');
+          $('.develop').attr("href", url);
+          document.location = url;
         }
     });
 });
