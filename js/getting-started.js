@@ -1,6 +1,11 @@
 //Start the Stars Canvas Function
 startStars();
 
+//Woopra Analytics
+window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+window.analytics.load("xeqpr7nni1");
+window.analytics.page();
+
 //Setup Document Cose
 function overlayClose() {
     var x = document.referrer;
@@ -338,3 +343,42 @@ $('.gs-no-thanks').click(function(){
   $('.develop').attr("href", client_url);
   document.location = client_url;
 });
+
+//Tackable
+var Trackable = {
+  
+  onClick: function(e) {
+    var trackable = $(e.target);
+    var data = trackable.data();
+    var event = data['event'];
+    var props = JSON.parse(JSON.stringify(data));
+    // console.log("tracking", event, props);
+    window.analytics.track(event, props);
+  },
+
+  onSubmit: function() {
+    var trackable = $(e.target);
+    var data = trackable.data();
+    var event = data['event'];
+    var props = JSON.parse(JSON.stringify(data));
+    // console.log("tracking", event, props);
+    window.analytics.track(event, props);
+  },
+
+  bindElement: function() {
+    var trackable = $(this);
+    var data = trackable.data();
+    switch(data['action']) {
+      case 'click':
+      case 'download': {
+          trackable.click(Trackable.onClick);
+        }
+        break;
+      case 'submit': {
+          trackable.submit(Trackable.onSubmit);
+        }
+        break;
+    }
+  }
+};
+$(".trackable").each(Trackable.bindElement);
